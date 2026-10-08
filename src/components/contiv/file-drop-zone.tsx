@@ -35,25 +35,29 @@ export function FileDropZone({
   const errorId = React.useId()
   return (
     <div className={cn('t-input-wrap', error && 'is-error')}>
-      <div
+      <input
+        ref={inputRef}
+        type="file"
+        accept={accept}
+        className="hidden"
+        onChange={(e) => {
+          const f = e.target.files?.[0]
+          if (f) onFile(f)
+          e.target.value = ''
+        }}
+      />
+      <button
+        type="button"
         className={cn(
-          't-input dz flex min-h-40 cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-border bg-muted/40 p-4 text-center sm:aspect-[16/10] sm:min-h-0',
+          't-input dz flex min-h-40 w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-border bg-muted/40 p-4 text-center font-normal sm:aspect-[16/10] sm:min-h-0',
           over && 'scale-[1.01] border-solid border-primary bg-primary/5',
           error && 'border-destructive/50',
           error && 'is-shaking',
           className,
         )}
-        role="button"
-        tabIndex={0}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? errorId : undefined}
         onClick={() => inputRef.current?.click()}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault()
-            inputRef.current?.click()
-          }
-        }}
         onDragEnter={(e) => {
           e.preventDefault()
           setOver(true)
@@ -70,17 +74,6 @@ export function FileDropZone({
           if (f) onFile(f)
         }}
       >
-        <input
-          ref={inputRef}
-          type="file"
-          accept={accept}
-          className="hidden"
-          onChange={(e) => {
-            const f = e.target.files?.[0]
-            if (f) onFile(f)
-            e.target.value = ''
-          }}
-        />
         {children ? (
           <div className="u-pop flex w-full flex-col items-center">
             {children}
@@ -104,7 +97,7 @@ export function FileDropZone({
             <p className="text-xs text-muted-foreground">{hint}</p>
           </>
         )}
-      </div>
+      </button>
       <p id={errorId} role="alert" className="t-error-msg text-sm text-destructive">
         {error}
       </p>

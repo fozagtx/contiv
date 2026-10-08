@@ -120,7 +120,12 @@ function Home() {
             className="text-background"
           />
         </div>
-        <h1 className="text-lg font-semibold">Contiv</h1>
+        <div>
+          <h1 className="text-lg font-semibold">Contiv</h1>
+          <p className="text-sm text-muted-foreground">
+            Upload a landscape image and an audio file. Get back a captioned video.
+          </p>
+        </div>
       </div>
 
       <div className="space-y-6 sm:space-y-8 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-8 lg:space-y-0 xl:grid-cols-[7fr_5fr]">

@@ -15,3 +15,5 @@ __unconfig*
 .design-system
 .ui-review
 .claude
+.migration
+scripts/migration-inventory.mjs
