@@ -96,7 +96,7 @@ export function CaptionStylePicker({
         <label
           key={s.id}
           className={cn(
-            'style-card u-lift card-press relative flex cursor-pointer items-center gap-3 rounded-lg border p-2.5',
+            'style-card u-lift card-press relative flex cursor-pointer items-center gap-3 rounded-lg border p-2.5 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring',
             value === s.id
               ? 'is-selected border-primary bg-primary/10 ring-2 ring-primary'
               : 'border-border bg-muted/40 hover:bg-muted/70',

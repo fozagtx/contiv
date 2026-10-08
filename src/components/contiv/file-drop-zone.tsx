@@ -32,6 +32,7 @@ export function FileDropZone({
 }) {
   const inputRef = React.useRef<HTMLInputElement>(null)
   const [over, setOver] = React.useState(false)
+  const errorId = React.useId()
   return (
     <div className={cn('t-input-wrap', error && 'is-error')}>
       <div
@@ -44,6 +45,8 @@ export function FileDropZone({
         )}
         role="button"
         tabIndex={0}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? errorId : undefined}
         onClick={() => inputRef.current?.click()}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -102,7 +105,9 @@ export function FileDropZone({
           </>
         )}
       </div>
-      <p className="t-error-msg text-sm text-destructive">{error}</p>
+      <p id={errorId} role="alert" className="t-error-msg text-sm text-destructive">
+        {error}
+      </p>
     </div>
   )
 }

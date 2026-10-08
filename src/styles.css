@@ -30,6 +30,7 @@ pre,
     background-color var(--duration-quick) var(--ease-smooth-out),
     transform var(--duration-quick) var(--ease-smooth-out);
 }
+.dz:active { transform: scale(0.99); }
 .u-pop {
   animation: u-pop var(--duration-fast) var(--ease-smooth-out) both;
 }
@@ -66,7 +67,10 @@ pre,
 
 /* Color swatch: selected ring pops in with a bounce, hover grows */
 .swatch { transition: transform var(--duration-quick) var(--ease-smooth-out); }
-.swatch:hover { transform: scale(1.1); }
+@media (hover: hover) {
+  .swatch:hover { transform: scale(1.1); }
+}
+.swatch:active { transform: scale(0.92); transition: none; }
 .swatch.is-sel { animation: u-swatch var(--duration-fast) var(--ease-bounce) both; }
 @keyframes u-swatch {
   from { transform: scale(0.8); }

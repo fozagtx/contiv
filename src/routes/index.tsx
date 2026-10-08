@@ -197,9 +197,14 @@ function Home() {
               <Button
                 size="lg"
                 className="u-btn w-full"
-                disabled={!done && (!image || !audio || busy)}
+                disabled={!done && (!image || !audio)}
+                aria-disabled={busy || undefined}
+                aria-busy={busy || undefined}
                 variant={done ? 'outline' : 'default'}
-                onClick={done ? reset : submit}
+                onClick={() => {
+                  if (busy) return
+                  done ? reset() : submit()
+                }}
               >
                 {busy ? (
                   <Icon
@@ -217,7 +222,7 @@ function Home() {
                     width={18}
                   />
                 )}
-                {done ? 'Start over' : busy ? 'Working on it' : 'Make my video'}
+                {done ? 'Start over' : 'Make my video'}
               </Button>
             </div>
           </SectionCard>

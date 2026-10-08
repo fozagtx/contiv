@@ -73,7 +73,7 @@ export function JobProgress({
     >
       <div className={cn('flex flex-col gap-6', isError && 'u-shake')}>
         {isError ? (
-          <div className="flex items-center gap-2 text-destructive">
+          <div role="alert" className="flex items-center gap-2 text-destructive">
             <Icon icon="solar:danger-triangle-bold" width={20} />
             <p className="text-sm">{error || 'Something went wrong'}</p>
           </div>

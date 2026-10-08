@@ -12,3 +12,6 @@ dist-ssr
 __unconfig*
 *.mp4
 .playwright-mcp
+.design-system
+.ui-review
+.claude

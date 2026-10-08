@@ -36,7 +36,7 @@ function OptionGroup<T extends string>({
           <ToggleGroupItem
             key={o}
             value={o}
-            className="min-w-0 flex-1 px-2 text-sm capitalize"
+            className="min-w-0 flex-1 px-2 text-sm capitalize active:scale-[0.97]"
           >
             {o}
           </ToggleGroupItem>
@@ -77,7 +77,7 @@ export function CaptionOptions({
                 title={c.name}
                 onClick={() => onColor(c.value)}
                 className={cn(
-                  'swatch h-9 w-9 rounded-full border-2 focus-visible:outline-none',
+                  'swatch h-9 w-9 rounded-full border-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background',
                   color === c.value
                     ? 'is-sel border-transparent ring-2 ring-foreground/60 ring-offset-2 ring-offset-background'
                     : 'border-white/40',
