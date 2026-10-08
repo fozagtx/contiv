@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: contiv
+    runtime: docker
+    # free tier sleeps and has 512MB, which is tight for ffmpeg
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: ASSEMBLYAI_API_KEY
+        sync: false
+      - key: NODE_ENV
+        value: production
