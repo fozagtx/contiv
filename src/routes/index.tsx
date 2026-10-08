@@ -120,17 +120,7 @@ function Home() {
             className="text-background"
           />
         </div>
-        <p className="text-lg font-semibold">Contiv</p>
-      </div>
-
-      <div className="mb-8 flex flex-col gap-3 sm:mb-10">
-        <h1 className="max-w-2xl text-balance text-3xl font-bold leading-tight lg:text-4xl">
-          Turn a picture and a voice note into a captioned video
-        </h1>
-        <p className="max-w-2xl text-muted-foreground">
-          Drop in a landscape photo and an audio file, pick a caption style, and
-          get a video with burned-in subtitles plus a captions file.
-        </p>
+        <h1 className="text-lg font-semibold">Contiv</h1>
       </div>
 
       <div className="space-y-6 sm:space-y-8 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-8 lg:space-y-0 xl:grid-cols-[7fr_5fr]">
