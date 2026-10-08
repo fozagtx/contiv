@@ -1,5 +1,4 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-import { HeroUIProvider } from '@heroui/react'
 
 import appCss from '../styles.css?url'
 
@@ -12,6 +11,10 @@ export const Route = createRootRoute({
       {
         name: 'viewport',
         content: 'width=device-width, initial-scale=1',
+      },
+      {
+        name: 'color-scheme',
+        content: 'dark',
       },
       {
         title: 'Contiv',
@@ -33,12 +36,12 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-theme="glass-light">
+    <html lang="en" className="dark">
       <head>
         <HeadContent />
       </head>
-      <body>
-        <HeroUIProvider>{children}</HeroUIProvider>
+      <body className="bg-background text-foreground antialiased">
+        {children}
         <Scripts />
       </body>
     </html>

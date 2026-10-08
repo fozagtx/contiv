@@ -1,56 +1,41 @@
 # DESIGN.md
 
-Design contract for this project. Written by design-promax. Agents read this first; do not re-ask the theme while this file exists.
+Design contract for this project. Agents read this first; do not re-ask the theme while this file exists.
 
 ## Theme
-- HeroUI Pro theme: Glass
-- data-theme: glass-light / glass-dark
-- CSS: themes.css copied to src/styles/themes.css; set data-theme on <html> (src/routes/__root.tsx uses glass-light)
+- Component library: shadcn/ui, base `radix`, style preset `radix-maia` (see components.json)
+- Dark mode is the default and only shipped theme: `<html class="dark">` in src/routes/__root.tsx, `<meta name="color-scheme" content="dark">`
+- CSS variables: src/styles.css (`:root` light palette kept, `.dark` palette is what users see; neutral base color)
 - Style preset: clean_product
-- Routes: / (single page, clean_product)
+- Routes: / (single page)
 
 ## Colors
-- Primary: #0F8A52 (HeroUI primary token override in src/hero.ts, full 50-900 green scale)
-- Background: glass-light body gradient in themes.css (never override body with a solid color)
-- Foreground: HeroUI foreground token
-- Semantic: success / warning / danger from HeroUI tokens; never raw Tailwind colors (bg-gray-100 etc.)
+- Tokens from shadcn CSS vars: background, foreground, card, muted-foreground, primary (near-white in dark), destructive, border, ring
+- Semantic: use tokens only, never raw Tailwind grays
 
 ## Typography
-- Display: Inter (Variable)  Body: Inter (Variable)  Mono: ui-monospace
-- Numbers: tabular-nums in any column; mono for ids, durations, file sizes
+- Display/body: Inter Variable (--font-sans). Mono: ui-monospace
 
 ## Spacing and shape
-- Page: px-4 py-8 sm:px-6 sm:py-12, max-w-3xl mx-auto
-- Card: p-5, backdrop-blur-xl bg-content1/60, border border-white/20, rounded-large
-- Gap: gap-6 between cards, gap-4 inside cards
-- Chips and segmented controls: rounded-full
-- Borders and shadows: border-white/20, glass shadow from themes.css
+- Page: max-w-3xl mx-auto, px-4 sm:px-6 lg:px-8, py-10 sm:py-16, space-y-8 sm:space-y-10
+- Cards: SectionCard (src/components/contiv/section-card.tsx), p-5 sm:p-6, header to content gap mt-5
+- Control groups gap-6, label to control gap-2
+- Spacing scale: 4/8/12/16/24/32/40 only
+- Radius: rounded-xl media surfaces and drop zones, rounded-4xl pills (buttons, toggles) from the preset
 
-## Icons
-- @iconify/react. Primary family: solar (bold / bold-duotone for tiles, linear for secondary). Fallback: lucide via iconify.
-- In use: solar:videocamera-record-bold, solar:gallery-bold, solar:music-note-bold, solar:download-minimalistic-linear, solar:text-bold, solar:danger-triangle-bold, solar:check-circle-bold, solar:refresh-linear
-
-## Component states
-- hover: bg-content1/70  pressed: bg-content1/80  focus: ring-2 ring-primary/60
-- disabled: opacity-40 backdrop-blur-none  selected: bg-primary/15 border-primary/40
-- Every list / form has empty, loading, error states as cards or rows (never a blank area)
+## Components
+- shadcn/ui primitives in src/components/ui: button, card, badge, toggle-group, toggle, progress, alert, separator, tooltip, skeleton
+- App components in src/components/contiv: section-card, file-drop-zone, caption-style-picker, caption-options, job-progress, job-result
+- Icons: @iconify/react, Solar family only
 
 ## Motion
-- Tokens: motion/_root.css copied to src/styles/motion.css; reference var(--duration-*), var(--ease-*), var(--distance-*)
-- Open is slower than close. Respect prefers-reduced-motion (guards kept in motion.css).
-- Moments on this project: text-states-swap (status during processing), success-check (video ready), error-state-shake (validation and job errors)
-- Rare UI atoms allowed here: none
-
-## Button matrix
-- Primary CTA: color="primary" radius="full" size="lg" + bold solar icon
-- Secondary: variant="bordered" radius="full" size="sm" + linear icon
-- Danger: color="danger" variant="flat" radius="full" size="sm"
-- Ghost: variant="light" radius="full" size="sm"
+- Tokens: src/styles/motion.css (var(--duration-*), var(--ease-*), var(--distance-*))
+- CSS-first interactions in src/styles.css: dropzone drag-over + accept pop (.dz, .u-pop), style-card hover lift/press/selected ring (.u-lift, .card-press, .style-card), swatch bounce (.swatch.is-sel), button press (.u-btn), card enter (.u-enter), progress fill (.u-progress-fill), check pop (.u-checkpop), error shake (.u-shake), status text swap (.t-text-swap)
+- All guarded under prefers-reduced-motion: reduce
 
 ## Copy
 - Human product language. No eng jargon in UI.
 - No em dashes. Sentence case. Buttons are verbs.
 
 ## Hard bans
-- Second Connect button; logo subtitle; gradient-clipped hero text; <br /> that leaves three leftover words
-- Fake metrics, fake ACME footer, invented cards, radius-full in dense surfaces
+- Logo subtitle; gradient-clipped hero text; fake metrics; fake footer; invented sections
