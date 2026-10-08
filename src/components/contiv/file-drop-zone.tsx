@@ -17,6 +17,8 @@ export function FileDropZone({
   error,
   onFile,
   children,
+  compact,
+  className,
 }: {
   icon: string
   label: string
@@ -25,6 +27,8 @@ export function FileDropZone({
   error?: string
   onFile: (f: File) => void
   children?: React.ReactNode
+  compact?: boolean
+  className?: string
 }) {
   const inputRef = React.useRef<HTMLInputElement>(null)
   const [over, setOver] = React.useState(false)
@@ -36,6 +40,7 @@ export function FileDropZone({
           over && 'scale-[1.01] border-solid border-primary bg-primary/5',
           error && 'border-destructive/50',
           error && 'is-shaking',
+          className,
         )}
         role="button"
         tabIndex={0}
@@ -76,6 +81,16 @@ export function FileDropZone({
         {children ? (
           <div className="u-pop flex w-full flex-col items-center">
             {children}
+          </div>
+        ) : compact ? (
+          <div className="flex items-center gap-3 text-left">
+            <div className="shrink-0 rounded-md border border-border bg-muted p-2">
+              <Icon icon={icon} width={24} className="text-muted-foreground" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-medium">{label}</p>
+              <p className="text-xs text-muted-foreground">{hint}</p>
+            </div>
           </div>
         ) : (
           <>

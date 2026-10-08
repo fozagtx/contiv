@@ -29,11 +29,15 @@ function OptionGroup<T extends string>({
         type="single"
         value={value}
         onValueChange={(v) => v && onChange(v as T)}
-        className="w-full justify-start sm:w-auto"
+        className="w-full"
         aria-label={label}
       >
         {options.map((o) => (
-          <ToggleGroupItem key={o} value={o} className="capitalize">
+          <ToggleGroupItem
+            key={o}
+            value={o}
+            className="min-w-0 flex-1 px-2 text-sm capitalize"
+          >
             {o}
           </ToggleGroupItem>
         ))}
@@ -84,7 +88,7 @@ export function CaptionOptions({
           </div>
         </div>
       )}
-      <div className="flex flex-col gap-4 sm:flex-row sm:gap-6">
+      <div className="grid grid-cols-1 gap-4 min-[420px]:grid-cols-2">
         <OptionGroup
           label="Position"
           options={['bottom', 'middle', 'top']}

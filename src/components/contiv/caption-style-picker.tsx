@@ -89,7 +89,7 @@ export function CaptionStylePicker({
     <div
       role="radiogroup"
       aria-label="Caption style"
-      className="grid grid-cols-1 gap-3 sm:grid-cols-2"
+      className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1"
       onKeyDown={onKeyDown}
     >
       {CAPTION_STYLES.map((s) => (

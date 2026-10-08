@@ -20,13 +20,7 @@ function SuccessCheck() {
   )
 }
 
-export function JobResult({
-  jobId,
-  onStartOver,
-}: {
-  jobId: string
-  onStartOver: () => void
-}) {
+export function JobResult({ jobId }: { jobId: string }) {
   return (
     <SectionCard
       title="Your video is ready"
@@ -57,15 +51,6 @@ export function JobResult({
               <Icon icon="solar:text-bold" width={16} />
               Download captions (.srt)
             </a>
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="w-full self-center sm:w-auto"
-            onClick={onStartOver}
-          >
-            <Icon icon="solar:refresh-linear" width={16} />
-            Start over
           </Button>
         </div>
       </div>
