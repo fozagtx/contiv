@@ -17,11 +17,11 @@ export const CAPTION_STYLES: {
 function StyleSwatch({ style, color }: { style: CaptionStyle; color: string }) {
   const words = 'your words show up here'.split(' ')
   const base =
-    'flex aspect-video w-full items-center justify-center overflow-hidden rounded-md border border-white/10 bg-zinc-950 px-3'
+    'flex aspect-video w-28 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-zinc-950 px-2'
   if (style === 'highlight') {
     return (
       <div className={base}>
-        <p className="text-center text-[11px] font-extrabold uppercase tracking-wide text-white sm:text-xs">
+        <p className="text-center text-[9px] font-extrabold uppercase tracking-wide text-white">
           {words.map((w, i) => (
             <span key={i} style={i === 1 ? { color } : undefined}>
               {w}{' '}
@@ -35,7 +35,7 @@ function StyleSwatch({ style, color }: { style: CaptionStyle; color: string }) {
     return (
       <div className={base}>
         <p
-          className="text-center text-[11px] text-white sm:text-xs"
+          className="text-center text-[9px] text-white"
           style={{
             textShadow:
               '1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000',
@@ -49,7 +49,7 @@ function StyleSwatch({ style, color }: { style: CaptionStyle; color: string }) {
   if (style === 'karaoke') {
     return (
       <div className={base}>
-        <p className="text-center text-[11px] font-extrabold uppercase tracking-wide sm:text-xs">
+        <p className="text-center text-[9px] font-extrabold uppercase tracking-wide">
           <span style={{ color }}>your words</span>{' '}
           <span className="text-white">show up here</span>
         </p>
@@ -58,7 +58,7 @@ function StyleSwatch({ style, color }: { style: CaptionStyle; color: string }) {
   }
   return (
     <div className={base}>
-      <p className="rounded bg-black/80 px-2 py-1 text-center text-[11px] text-white sm:text-xs">
+      <p className="rounded bg-black/80 px-2 py-1 text-center text-[9px] text-white">
         your words show up here
       </p>
     </div>
@@ -96,7 +96,7 @@ export function CaptionStylePicker({
         <label
           key={s.id}
           className={cn(
-            'style-card u-lift card-press relative cursor-pointer rounded-xl border p-3',
+            'style-card u-lift card-press relative flex cursor-pointer items-center gap-3 rounded-lg border p-2.5',
             value === s.id
               ? 'is-selected border-primary bg-primary/10 ring-2 ring-primary'
               : 'border-border bg-muted/40 hover:bg-muted/70',
@@ -111,8 +111,10 @@ export function CaptionStylePicker({
             className="sr-only"
           />
           <StyleSwatch style={s.id} color={highlightColor} />
-          <p className="mt-2 text-sm font-medium">{s.name}</p>
-          <p className="text-xs text-muted-foreground">{s.note}</p>
+          <div className="min-w-0">
+            <p className="text-sm font-medium">{s.name}</p>
+            <p className="text-xs text-muted-foreground">{s.note}</p>
+          </div>
         </label>
       ))}
     </div>
